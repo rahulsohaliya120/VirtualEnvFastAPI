@@ -22,15 +22,16 @@ def send_verification_email(to_email: str, username: str, token: str):
 
     msg = EmailMessage()
     msg["Subject"] = subject
-    msg["From"] = "no-reply@mailmug.net"
+    msg["From"] = "<rahulsohaliya.software@gmail.com>"
     msg["To"] = to_email
     msg.set_content("Please view this email in HTML format.")
     msg.add_alternative(html_body, subtype="html")
 
     try:
-        with smtplib.SMTP("smtp.mailmug.net", 2525) as smtp:
+        with smtplib.SMTP("smtp.gmail.com", 587) as smtp:
             smtp.set_debuglevel(1)
-            smtp.login("0qjhee6lqv0lzh8y", "zwdockiwwbtegjcg")
+            smtp.starttls()
+            smtp.login("rahulsohaliya.software@gmail.com", "rdfxeypwfnqvyist")
             smtp.send_message(msg)
             print("✅ Email sent successfully.")
     except Exception as e:
